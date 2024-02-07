@@ -38,10 +38,10 @@ Benchmarking 'TDJLCC' a.k.a. The-Definitive-Japanese-Language-Compression-Corpus
 Benchmarking 'ISTA9' a.k.a. INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
 Benchmarking 'llvm-project' a.k.a. CLANG-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
     
-Another iteration of Sanmayce's decompression showdown 'FULG', revision 4+, all performers are included in the package.
+Another iteration of Sanmayce's decompression showdown 'FULG', revision 4+, all performers are included in the package.  
     
-Always, it is good to get the picture how the latest compressors fare in TEXTUAL realm.
-The name of the game is: applying maximum compression strength, aiming at maximum decompression ... speed, heh-heh.
+Always, it is good to get the picture how the latest compressors fare in TEXTUAL realm.  
+The name of the game is: applying maximum compression strength, aiming at maximum decompression ... speed, heh-heh.  
     
 Included compressors:
 ```
@@ -88,9 +88,9 @@ perf stat -d ./zpaq715_sse4.1.elf  x "$1.zpaq" -threads 4
 perf stat -d ./"Satanichi_Nakamichi_Vanilla_LITE_DD-128AES_CLANG(17.0.4)_64bit.elf" $1.Nakamichi>$1.NKMCH
 ```
     
-Corpus #1:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Classics_Complete_Works_of_128_authors.tar (1,576,788,480 bytes)
+Corpus #1:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Classics_Complete_Works_of_128_authors.tar (1,576,788,480 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+------------------+---------------------+
 | Compressor                  | Compressed size | Walltime / Usertime / Systemtime | Memory footprint |     CPU utilization |
@@ -112,12 +112,12 @@ Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Cla
 | Satanichi_CLANG_17.0.4      |     474,713,658 |        209,045 / 54,455 / 19,461 |            64+GB | 0.359 CPUs utilized |            
 +-----------------------------+-----------------+----------------------------------+------------------+---------------------+
 ```
-Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-67)=-11 gigabytes more than 64GB), seen by the 6h systemtime.
-Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 44N = 66,224MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,503 MB) x 64 passes = 160,192MB ! So, drastically reduced time for compression if 230 GB are available. In case of all indexes fit in RAM, the encoding speed is 100 KB/s.
+Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-67)=-11 gigabytes more than 64GB), seen by the 6h systemtime.  
+Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 44N = 66,224MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,503 MB) x 64 passes = 160,192MB ! So, drastically reduced time for compression if 230 GB are available. In case of all indexes fit in RAM, the encoding speed is 100 KB/s.  
     
-Corpus #1:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Classics_Complete_Works_of_128_authors.tar (1,576,788,480 bytes)
+Corpus #1:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Classics_Complete_Works_of_128_authors.tar (1,576,788,480 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+-----------------------+--------------------+----------------------------------+ 
 | Decompressor                | Compressed size | Walltime / Usertime / Systemtime |       CPU utilization |       Instructions |      LLC-loads / LLC-load-misses |
@@ -141,14 +141,14 @@ Testdatafile: sha1: 8326b48e3a315f4f656013629226c319fefd483e SUPRAPIG_Delphi_Cla
 | zpaq715_sse4.1              |     289,466,679 |            4031.6 / 4000.1 / 9.6 |   1.000 CPUs utilized | 24,939,199,778,486 | 136,354,757,447 / 28,877,270,011 |
 +-----------------------------+-----------------+----------------------------------+-----------------------+--------------------+----------------------------------+
 ```
-Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.
-Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.
-Note03: Comparison was made, each decompressed file was compared with the original.
-Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.
-Note04b: For instance, every 177,744,185 / 57,211,272 = 3.1rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.
-Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.
-Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 4,211,049,650 / 1,576,788,480 = 2.67 DIPB;
-Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:
+Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.  
+Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.  
+Note03: Comparison was made, each decompressed file was compared with the original.  
+Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.  
+Note04b: For instance, every 177,744,185 / 57,211,272 = 3.1rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.  
+Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.  
+Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 4,211,049,650 / 1,576,788,480 = 2.67 DIPB;  
+Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:  
 ```
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
@@ -161,9 +161,9 @@ gcc -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_GCC_13.2.1_64bit
 clang -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_CLANG_17.0.4_64bit.elf -I../include blzpack.c parg.c ../src/brieflz.c ../src/depack.c ../src/depacks.c -D_N_HIGH_PRIORITY
 ```
     
-Corpus #2:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_century_5109_Japanese_TXT_Books_Shift-JIS_encoding.tar (1,550,303,744 bytes)
+Corpus #2:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_century_5109_Japanese_TXT_Books_Shift-JIS_encoding.tar (1,550,303,744 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+------------------+---------------------+
 | Compressor                  | Compressed size | Walltime / Usertime / Systemtime | Memory footprint |     CPU utilization |
@@ -185,12 +185,12 @@ Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_centu
 | Satanichi_CLANG_17.0.4      |     544,028,165 |             45,340 / 45,084 / 15 |       ~54,545 MB | 1.000 CPUs utilized |            
 +-----------------------------+-----------------+----------------------------------+------------------+---------------------+
 ```
-Note01a: Nakamichi fits (Source-Buffer + Target-Buffer + HASH memory + B-trees pool = 1,478 MB + 2,478 MB + 142,606,401 bytes + 50,447 MB ~= 54,545 MB) in the physical RAM thus not thrashing the virtual RAM, seen by the 15 seconds systemtime.
-Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 34N = 50,447MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,478 MB) x 64 passes = 158,592MB !
+Note01a: Nakamichi fits (Source-Buffer + Target-Buffer + HASH memory + B-trees pool = 1,478 MB + 2,478 MB + 142,606,401 bytes + 50,447 MB ~= 54,545 MB) in the physical RAM thus not thrashing the virtual RAM, seen by the 15 seconds systemtime.  
+Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 34N = 50,447MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,478 MB) x 64 passes = 158,592MB !  
     
-Corpus #2:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_century_5109_Japanese_TXT_Books_Shift-JIS_encoding.tar (1,550,303,744 bytes)
+Corpus #2:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_century_5109_Japanese_TXT_Books_Shift-JIS_encoding.tar (1,550,303,744 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+-----------------------+--------------------+----------------------------------+ 
 | Decompressor                | Compressed size | Walltime / Usertime / Systemtime |       CPU utilization |       Instructions |      LLC-loads / LLC-load-misses |
@@ -214,14 +214,14 @@ Testdatafile: sha1: a8b1df94bfb88e5cc005367ad3597ad292c07922 SUPRAPIG_Last_centu
 | zpaq715_sse4.1              |     327,138,192 |            3521.3 / 3493.8 / 7.9 |   1.000 CPUs utilized | 22,421,410,663,967 | 121,361,845,952 / 25,669,929,198 |
 +-----------------------------+-----------------+----------------------------------+-----------------------+--------------------+----------------------------------+
 ```
-Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.
-Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.
-Note03: Comparison was made, each decompressed file was compared with the original.
-Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.
-Note04b: For instance, every 168,714,587 / 45,072,161 = 3.7rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.
-Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.
-Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 5,060,020,726 / 1,550,303,744 = 3.2 DIPB;
-Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:
+Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.  
+Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.  
+Note03: Comparison was made, each decompressed file was compared with the original.  
+Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.  
+Note04b: For instance, every 168,714,587 / 45,072,161 = 3.7rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.  
+Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.  
+Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 5,060,020,726 / 1,550,303,744 = 3.2 DIPB;  
+Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:  
 ```
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
@@ -234,9 +234,9 @@ gcc -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_GCC_13.2.1_64bit
 clang -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_CLANG_17.0.4_64bit.elf -I../include blzpack.c parg.c ../src/brieflz.c ../src/depack.c ../src/depacks.c -D_N_HIGH_PRIORITY
 ```
     
-Corpus #3:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9_(English_140479_htm_files).tar (2,037,880,832 bytes)
+Corpus #3:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9_(English_140479_htm_files).tar (2,037,880,832 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+------------------+---------------------+
 | Compressor                  | Compressed size | Walltime / Usertime / Systemtime | Memory footprint |     CPU utilization |
@@ -258,12 +258,12 @@ Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_S
 | Satanichi_CLANG_17.0.4      |     432,873,383 |        566,317 / 62,504 / 39,265 |            64+GB | 0.185 CPUs utilized |            
 +-----------------------------+-----------------+----------------------------------+------------------+---------------------+
 ```
-Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-76)=-20 gigabytes more than 64GB), seen by the 11h systemtime.
-Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 38N = 75,724MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,943 MB) x 64 passes = 188,352MB !
+Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-76)=-20 gigabytes more than 64GB), seen by the 11h systemtime.  
+Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 38N = 75,724MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,943 MB) x 64 passes = 188,352MB !  
     
-Corpus #3:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9_(English_140479_htm_files).tar (2,037,880,832 bytes)
+Corpus #3:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9_(English_140479_htm_files).tar (2,037,880,832 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+-----------------------+--------------------+----------------------------------+ 
 | Decompressor                | Compressed size | Walltime / Usertime / Systemtime |       CPU utilization |       Instructions |      LLC-loads / LLC-load-misses |
@@ -287,14 +287,14 @@ Testdatafile: sha1: 7c2e32a76716e184d302e5542b96c16e95047002 SUPRAPIG_INTERNET_S
 | zpaq715_sse4.1              |     238,923,738 |            4583.8 / 4551.0 / 9.8 |   1.000 CPUs utilized | 32,252,231,612,296 | 157,765,885,275 / 26,776,989,764 |
 +-----------------------------+-----------------+----------------------------------+-----------------------+--------------------+----------------------------------+
 ```
-Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.
-Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.
-Note03: Comparison was made, each decompressed file was compared with the original.
-Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.
-Note04b: For instance, every 137,592,039 / 37,626,730 = 3.6rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.
-Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.
-Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 4,006,019,521 / 2,037,880,832 = 1.96 DIPB;
-Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:
+Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.  
+Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.  
+Note03: Comparison was made, each decompressed file was compared with the original.  
+Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.  
+Note04b: For instance, every 137,592,039 / 37,626,730 = 3.6rd attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.  
+Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.  
+Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 4,006,019,521 / 2,037,880,832 = 1.96 DIPB;  
+Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:  
 ```
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
@@ -307,9 +307,9 @@ gcc -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_GCC_13.2.1_64bit
 clang -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_CLANG_17.0.4_64bit.elf -I../include blzpack.c parg.c ../src/brieflz.c ../src/depack.c ../src/depacks.c -D_N_HIGH_PRIORITY
 ```
     
-Corpus #4:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-12097d13d39fc8c1058ab457c52d2d0193e5fe6f llvm-project-llvmorg-17.0.6.tar (1,591,029,760 bytes)
+Corpus #4:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+12097d13d39fc8c1058ab457c52d2d0193e5fe6f llvm-project-llvmorg-17.0.6.tar (1,591,029,760 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+------------------+---------------------+
 | Compressor                  | Compressed size | Walltime / Usertime / Systemtime | Memory footprint |     CPU utilization |
@@ -331,12 +331,12 @@ Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GH
 | Satanichi_CLANG_17.0.4      |     188,393,093 |    196:09:34 / 41839.2 / 40334.8 |            64+GB |                 11% |            
 +-----------------------------+-----------------+----------------------------------+------------------+---------------------+
 ```
-Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-91)=-35 gigabytes more than 64GB), seen by the 11h systemtime.
-Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 60N = 91,236MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,517 MB) x 32 passes = 80,544MB !
+Note01a: Nakamichi thrashes the virtual RAM (since it needs ~(61-(Source-Buffer + Target-Buffer = 2 + 3)-91)=-35 gigabytes more than 64GB), seen by the 11h systemtime.  
+Note01b: Satanichi monstrously devours physical RAM, like 3TB, in order to flex its muscles. ! RAM needed to house B-trees (relative to the file being ripped): 60N = 91,236MB; RAM needed to build B-trees IN ONE PASS: (Target-Buffer = 2,517 MB) x 32 passes = 80,544MB !  
     
-Corpus #4:
-Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39
-12097d13d39fc8c1058ab457c52d2d0193e5fe6f llvm-project-llvmorg-17.0.6.tar (1,591,029,760 bytes)
+Corpus #4:  
+Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GHz, 64GB, Linux Fedora 39  
+12097d13d39fc8c1058ab457c52d2d0193e5fe6f llvm-project-llvmorg-17.0.6.tar (1,591,029,760 bytes)  
 ```
 +-----------------------------+-----------------+-----------[ Sorted by Walltime ]-+-----------------------+--------------------+----------------------------------+ 
 | Decompressor                | Compressed size | Walltime / Usertime / Systemtime |       CPU utilization |       Instructions |      LLC-loads / LLC-load-misses |
@@ -360,14 +360,14 @@ Testmachinette: Laptop 'Dzvertcheto' Thinkpad L490, Intel i7-8565U (8) @ 4.600GH
 | zpaq715_sse4.1              |      84,682,636 |            3031.7 / 3007.1 / 8.8 |   1.000 CPUs utilized | 24,793,303,929,656 |  111,818,506,686 / 9,730,114,070 |
 +-----------------------------+-----------------+----------------------------------+-----------------------+--------------------+----------------------------------+
 ```
-Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.
-Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.
-Note03: Comparison was made, each decompressed file was compared with the original.
-Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.
-Note04b: For instance, every 28,855,272 / 6,903,526 = 4.1th attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.
-Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.
-Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 1,836,625,675 / 1,591,029,760 = 1.15 DIPB;
-Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:
+Note01: The Walltime includes LOAD-DECOMPRESS-DUMP times, that is, external-RAM -> internal-RAM -> external-RAM.  
+Note02: The decompression is done on RamDisk of size 32GB, both the compressed and the decompressed files are on it.  
+Note03: Comparison was made, each decompressed file was compared with the original.  
+Note04a: The last column is quite informative, latencywise, the Last-Level-Cache misses value is indicative how much physical RAM (and cache hierarchy) stalls the CPU.  
+Note04b: For instance, every 28,855,272 / 6,903,526 = 4.1th attempt to load from Last-Level-Cache is denied, it says, that with bigger L3 (i7-8565U has 8 MB), Nakamichi's main bottleneck has less impact.  
+Note05: Decompression times are the fastest of three runs, enforcing sleeping for 7 seconds in between in order to cool off.  
+Note06: Another useful measure is DIPB which stands for Decompression-Instructions-Per-Byte, since Nakamichi is simplistic and uses no entropy stage it has the lowest 1,836,625,675 / 1,591,029,760 = 1.15 DIPB;  
+Note07: The whole Read-Decompress-Write trio is done on RAM disk, created as follows:  
 ```
 sudo mkdir /tmp/ramdisk
 sudo chmod 777 /tmp/ramdisk
@@ -380,13 +380,13 @@ gcc -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_GCC_13.2.1_64bit
 clang -O3 -fomit-frame-pointer -fstrict-aliasing -o BriefLZ_1.3.0_CLANG_17.0.4_64bit.elf -I../include blzpack.c parg.c ../src/brieflz.c ../src/depack.c ../src/depacks.c -D_N_HIGH_PRIORITY
 ```
     
-Bottomlines:
-- Conor's nifty tool LZSSE reigns (hate to miss LZTurbo (wonderful BWTSatan as well) and Oodle) supreme, fully (Read-Decompress-Write) decompresses at 1,576,788,480 bytes / 0.8 seconds = 1879 MiB/s and 2,037,880,832 bytes / 0.9 seconds = 2159 MiB/s, being a single-threaded bonbon; should LZSSE be threaded, it would scream insanely;
-- Excellent work, Gribok, thank you for your superuseful tool – a multi-threaded bonboniera;
-- Matt Mahoney’s ZPAQ is the OG, never outside the ... MIX;
-- RARwise, Roshal brothers never disappoint, as far as I see, they aim at speed mostly, very fast all around;
-- Satanichi (being the latest Nakamichi) fares well, being from 8.8/2.7=3.2x to 9.9/2.9=3.3x faster than 7zzs_23.01's gz, however, Igor Pavlov’s implementation is inferior to Eric Biggers’ libdeflate, which in some cases is even faster than my toy, couldn’t include it;
-- And, regarding the impact of Last-Level-Cache, surely BSC will scream even louder with those huge 3D cache CPUs, those 1+ billion LLC misses are a drag;
+Bottomlines:  
+- Conor's nifty tool LZSSE reigns (hate to miss LZTurbo (wonderful BWTSatan as well) and Oodle) supreme, fully (Read-Decompress-Write) decompresses at 1,576,788,480 bytes / 0.8 seconds = 1879 MiB/s and 2,037,880,832 bytes / 0.9 seconds = 2159 MiB/s, being a single-threaded bonbon; should LZSSE be threaded, it would scream insanely;  
+- Excellent work, Gribok, thank you for your superuseful tool – a multi-threaded bonboniera;  
+- Matt Mahoney’s ZPAQ is the OG, never outside the ... MIX;  
+- RARwise, Roshal brothers never disappoint, as far as I see, they aim at speed mostly, very fast all around;  
+- Satanichi (being the latest Nakamichi) fares well, being from 8.8/2.7=3.2x to 9.9/2.9=3.3x faster than 7zzs_23.01's gz, however, Igor Pavlov’s implementation is inferior to Eric Biggers’ libdeflate, which in some cases is even faster than my toy, couldn’t include it;  
+- And, regarding the impact of Last-Level-Cache, surely BSC will scream even louder with those huge 3D cache CPUs, those 1+ billion LLC misses are a drag;  
     
 Obviously, WhiskeyLake rocks, being only 25W.
     
