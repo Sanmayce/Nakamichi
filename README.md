@@ -1,10 +1,13 @@
 # Nakamichi
     
-Nakamichi 'Dragoneye' highlights:  
+![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
+    
+Nakamichi 'Dragoneye' (a.k.a. Satanichi) highlights:  
     
 - The latest Zennish LZSS Microdeduplicator;  
 - File-to-File [de]compressor;  
 - Superfast decompression rates, superslow compression rates;  
+- In order to lessen the memory footprint, the fastest 128bit hash function (known to me) DoubleDeuceAES_Gumbotron_YMM "lossily compresses" matches 16+ bytes long (down to 16 bytes);  
 - On big (1000++MB) textual data, second only to Oodle and Hamid's LzTurbo 29, ratiowise, resourcewise and speedwise - TRIPLE TRUMP :P;  
 - Single-threaded Non-SIMD console tool written in plain C, compileable under Windows and Linux;  
 - An LZSS (Lempel–Ziv–Storer–Szymanski) implementation with Greedy Parsing and 1TB Sliding Window;  
@@ -25,7 +28,7 @@ Nakamichi 'Dragoneye' highlights:
 - SCALABLE! Gets faster when more Physical or/and External RAM is available, on servers with 1TB RAM (or desktops with 64GB and 1TB Optane SSD) it will dance...  
 - 2020-Dec-08: At last, here comes Nakamichi 'Dragoneye' Double-Deuce, it needs "only" roughly 2N+(29N = 28,495MB) or 32N to compress N=~1GB.  
     
-![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
+![Gumbotron_darker](https://github.com/Sanmayce/Nakamichi/assets/14062548/fb63af7b-1c25-4116-9ff4-11d6a8007a24)
     
 Homepage:  
 http://www.sanmayce.com/Nakamichi/  
