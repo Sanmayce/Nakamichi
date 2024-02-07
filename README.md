@@ -1,5 +1,10 @@
 # Nakamichi
-Slowest LZSS compressor
+Slowest LZSS compressor  
+
+![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
+
+Homepage:  
+http://www.sanmayce.com/Nakamichi/  
     
 Benchmarking 'TDELCC' a.k.a. The-Definitive-English-Language-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
 Benchmarking 'TDJLCC' a.k.a. The-Definitive-Japanese-Language-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
