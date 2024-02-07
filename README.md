@@ -33,10 +33,10 @@ Nakamichi 'Dragoneye' (a.k.a. Satanichi) highlights:
 Homepage:  
 http://www.sanmayce.com/Nakamichi/  
     
-Benchmarking 'TDELCC' a.k.a. The-Definitive-English-Language-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
-Benchmarking 'TDJLCC' a.k.a. The-Definitive-Japanese-Language-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
-Benchmarking 'ISTA9' a.k.a. INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
-Benchmarking 'llvm-project' a.k.a. CLANG-Compression-Corpus, a smashdown, https://github.com/Sanmayce/Nakamichi  
+Benchmarking 'TDELCC' a.k.a. The-Definitive-English-Language-Compression-Corpus  
+Benchmarking 'TDJLCC' a.k.a. The-Definitive-Japanese-Language-Compression-Corpus  
+Benchmarking 'ISTA9' a.k.a. INTERNET_SACRED_TEXT_ARCHIVE_DVD-ROM_9-Compression-Corpus  
+Benchmarking 'llvm-project' a.k.a. CLANG-Compression-Corpus  
     
 Another iteration of Sanmayce's decompression showdown 'FULG', revision 4+, all performers are included in the package.  
     
