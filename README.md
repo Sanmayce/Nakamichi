@@ -1,8 +1,8 @@
 # Nakamichi
     
-![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
-    
 Nakamichi 'Dragoneye' (a.k.a. Satanichi) highlights:  
+    
+![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
     
 - The latest Zennish LZSS Microdeduplicator;  
 - File-to-File [de]compressor;  
