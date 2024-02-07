@@ -1,8 +1,32 @@
 # Nakamichi
-Slowest LZSS compressor  
-
+    
+Nakamichi 'Dragoneye' highlights:  
+    
+- The latest Zennish LZSS Microdeduplicator;  
+- File-to-File [de]compressor;  
+- Superfast decompression rates, superslow compression rates;  
+- On big (1000++MB) textual data, second only to Oodle and Hamid's LzTurbo 29, ratiowise, resourcewise and speedwise - TRIPLE TRUMP :P;  
+- Single-threaded Non-SIMD console tool written in plain C, compileable under Windows and Linux;  
+- An LZSS (Lempel–Ziv–Storer–Szymanski) implementation with Greedy Parsing and 1TB Sliding Window;  
+- Ability to deduplicate (as little as) 64 bytes long chunks 1TB backwards;  
+- Targets huge textual datasets (mainly English), weak-'n'-slow on binary data;  
+- One goal is to boost traversing (full-text parsing) of the whole XML dump of Wikipedia being ~64GB strong via TRANSPARENT decompression;  
+- The first matchfinder using both the fastest memmem() Railgun ‘Trolldom’ and B-trees;  
+- The first parser using both Internal or External RAM, decided by a single command line option - 'i' or 'e';  
+- Hashpot/hashpool (residing in Physical RAM) could be tuned via command line parameter, thus lessening the B-trees heights/attempts;  
+- The B-trees form the second layer, the first being HASH table handled by FNV1A-Pippip;  
+- The Leprechaunesque (Internal/External) B-trees order 3 (2 keys MAX) are highly-optimized;  
+- DEPRECIATED (too slow): To keep LEAF’s footprint small, keys 36/64 bytes long are hashed by SHA3-224, otherwise left intact;  
+- The building of B-trees is done in 128 PASSES, thus LOCALITY/LOCALIZATION leads to cache-friendliness, for example, instead of confusing/blinding
+  the SSD controller with building 2^27 ~= 128M B-trees at a time, 'PASSES' revision lowers the "noise/mayhem" 128 times by processing 1M B-trees at a time;  
+- 100% FREE;  
+- Trivially to return building B-trees in System RAM in passes - thus saving the SSD from trashing - ONLY SEQUENTIAL DUMPS - and much faster also;  
+- 2019-Aug-15: INCOMING! Trivially to skip inserting UNIQUE KEYS into B-trees - thus saving big_time and big_space;  
+- SCALABLE! Gets faster when more Physical or/and External RAM is available, on servers with 1TB RAM (or desktops with 64GB and 1TB Optane SSD) it will dance...  
+- 2020-Dec-08: At last, here comes Nakamichi 'Dragoneye' Double-Deuce, it needs "only" roughly 2N+(29N = 28,495MB) or 32N to compress N=~1GB.  
+    
 ![Nlogo](https://github.com/Sanmayce/Nakamichi/assets/14062548/5b1eb2a5-72e3-4989-bb01-f14e77b1b777)
-
+    
 Homepage:  
 http://www.sanmayce.com/Nakamichi/  
     
