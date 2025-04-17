@@ -27,6 +27,9 @@ Nakamichi 'Dragoneye' (a.k.a. Satanichi) highlights:
 - 2019-Aug-15: INCOMING! Trivially to skip inserting UNIQUE KEYS into B-trees - thus saving big_time and big_space;  
 - SCALABLE! Gets faster when more Physical or/and External RAM is available, on servers with 1TB RAM (or desktops with 64GB and 1TB Optane SSD) it will dance...  
 - 2020-Dec-08: At last, here comes Nakamichi 'Dragoneye' Double-Deuce, it needs "only" roughly 2N+(29N = 28,495MB) or 32N to compress N=~1GB.  
+
+The roster for SEFARIA (5GB corpus):  
+![Sefaria](https://github.com/user-attachments/assets/662779d3-b0c9-4b7d-92c7-9ce528908118)
     
 ![Gumbotron_darker](https://github.com/Sanmayce/Nakamichi/assets/14062548/fb63af7b-1c25-4116-9ff4-11d6a8007a24)
     
